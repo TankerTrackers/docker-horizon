@@ -1,4 +1,4 @@
-FROM breki/common
+FROM breki/common:latest
 
 RUN mkdir -p /etc/supervisor.d
 
