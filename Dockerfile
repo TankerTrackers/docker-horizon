@@ -10,6 +10,7 @@ VOLUME /var/log/horizon
 
 # Get configuration files in place.
 COPY ./supervisord.conf /etc/supervisord.conf
+COPY ./cron.conf /etc/supervisor.d/cron.conf
 COPY ./horizon.conf /etc/supervisor.d/horizon.conf
 
 # Get the Cron job in place.
@@ -17,8 +18,5 @@ COPY ./cron.tab /etc/cron.d/cron.tab
 RUN chmod 0644 /etc/cron.d/cron.tab
 RUN crontab /etc/cron.d/cron.tab
 RUN touch /var/log/cron.log
-
-# Start the CRON demon
-RUN cron
 
 CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
