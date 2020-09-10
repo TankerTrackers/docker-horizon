@@ -8,10 +8,16 @@ RUN apt-get update -y           \
 
 VOLUME /var/log/horizon
 
+# Get configuration files in place.
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./horizon.conf /etc/supervisor.d/horizon.conf
-COPY ./cron.tab /etc/cron.d/cron.tab
 
+# Get the Cron job in place.
+COPY ./cron.tab /etc/cron.d/cron.tab
 RUN chmod 0644 /etc/cron.d/cron.tab
+RUN crontab /etc/cron.d/cron.tab
+RUN touch /var/log/cron.log
+
+CMD cron && tail -f /var/log/cron.log
 
 CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
