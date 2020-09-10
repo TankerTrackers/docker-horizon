@@ -18,6 +18,7 @@ RUN chmod 0644 /etc/cron.d/cron.tab
 RUN crontab /etc/cron.d/cron.tab
 RUN touch /var/log/cron.log
 
-CMD cron && tail -f /var/log/cron.log
+# Start the CRON demon
+RUN cron
 
 CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
