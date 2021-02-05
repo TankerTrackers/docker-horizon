@@ -1,0 +1,8 @@
+*
+!.gitignore
+!Dockerfile
+!README.md
+!cron.conf
+!cron.tab
+!horizon.conf
+!supervisord.conf
