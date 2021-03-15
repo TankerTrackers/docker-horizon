@@ -1,3 +1,5 @@
+# 2021-03-15: Upgraded to use PHP v8.0.3
+
 FROM breki/common:latest
 
 RUN apt-get update -y           \
